@@ -14,34 +14,6 @@ import cv2
 import time
 import tensorflow as tf
 
-# create all the folders
-tandp = 'static\I'
-sep = 'static\images'
-comb = 'combination'
-if os.path.isdir(tandp):
-    shutil.rmtree(tandp)
-    print("Folder Cleared!")
-    os.mkdir(tandp)
-else:
-    os.mkdir(tandp)
-    print("New Folder Created!")
-
-if os.path.isdir(sep):
-    shutil.rmtree(sep)
-    print("Folder Cleared!")
-    os.mkdir(sep)
-else:
-    os.mkdir(sep)
-    print("New Folder Created!")
-
-if os.path.isdir(comb):
-    shutil.rmtree(comb)
-    print("Folder Cleared!")
-    os.mkdir(comb)
-else:
-    os.mkdir(comb)
-    print("New Folder Created!")
-
 # read the picture, create a blank picture and combine them on it
 path = "static/Whole"
 path_dest = "static/images"
