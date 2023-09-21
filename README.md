@@ -1,2 +1,2 @@
 # Segmentation
-This is for the retinal segmentation
+This is for the retina vessel segmentation
