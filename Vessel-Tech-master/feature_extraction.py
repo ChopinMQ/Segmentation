@@ -128,13 +128,10 @@ def FE():
             ##############
             alldata=save_data(graph,center=False)
             data_name = files[i][0:6] + "_alldata.xlsx"
-            print ("data name: " + data_name)
-
+            writer = save_dir+data_name
             #writer = pd.ExcelWriter('/Users/wangxuelin/Downloads/STARE-im/im0324_alldata.xlsx', engine='xlsxwriter')
-            writer = pd.ExcelWriter(save_dir+data_name, engine='xlsxwriter')
 
             alldata.to_excel(writer,index=False)
-            writer.save()
             
             degreedata=save_degree(graph,x1,y1)
             degree_name = files[i][0:6] + "_degreedata.xlsx"
@@ -144,7 +141,7 @@ def FE():
             degreewriter = pd.ExcelWriter(save_dir+degree_name, engine='xlsxwriter')
 
             degreedata.to_excel(degreewriter,index=False)
-            degreewriter.save()
+            degreewriter._save()
             NODESIZESCALING = 30
             EDGETRANSPARENCYDIVIDER = 5
             pic=draw_graph2(np.asarray(image.convert("RGB")), graph,center=False)
@@ -152,6 +149,7 @@ def FE():
             print ("pic name: " + save_dir + pic_name)
             plt.imshow(pic)
             plt.imsave(save_dir + pic_name, pic)
+            
             
 
     return 0
