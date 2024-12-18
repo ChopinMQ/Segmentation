@@ -41,26 +41,30 @@ for i in range(inteh):
         else:
             imneed = imarray[500*i-10:500*(i+1)+10,500*j-10:500*(j+1) +10,:]
         
-        final = Image.fromarray(imneed)
-        final.save(path_dest + "/" + onlyfiles[0])
+        if np.all(imneed == 0):
+          pred_arr = np.zeros((520, 520), dtype=np.uint8)
 
-        # prepare dataset
-        prepare_datasets_DRIVE.Prepare()
-        print("$$$$$$$Finish Preparation$$$$$$$")
+        else:
+          final = Image.fromarray(imneed)
+          final.save(path_dest + "/" + onlyfiles[0])
 
-        # 1. do the up part prediction
+          # prepare dataset
+          prepare_datasets_DRIVE.Prepare()
+          print("$$$$$$$Finish Preparation$$$$$$$")
 
-        predicting.Prediction()
-        print("$$$$$$$Finish Prediction of the Upper Part$$$$$$$")
+          # 1. do the up part prediction
 
-        target = "combination/"
-        path_or = "static/I/"+"all_originals.jpg"
-        path_pred = "static/I/"+"all_predictions.jpg"
-        ori = Image.open(path_or)
-        pred = Image.open(path_pred)
-        ori_arr = np.asarray(ori)
-        pred_arr = np.asarray(pred)
-        time.sleep(1)
+          predicting.Prediction()
+          print("$$$$$$$Finish Prediction of the Upper Part$$$$$$$")
+
+          target = "combination/"
+          path_or = "static/I/"+"all_originals.jpg"
+          path_pred = "static/I/"+"all_predictions.jpg"
+          ori = Image.open(path_or)
+          pred = Image.open(path_pred)
+          ori_arr = np.asarray(ori)
+          pred_arr = np.asarray(pred)
+          time.sleep(1)
 
         if(i == 0 and j == 0):
             tol[i*500:500+i*500,j*500:j*500+500] = pred_arr[0:500, 0:500]
